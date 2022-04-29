@@ -24,7 +24,7 @@ pipeline {
     stage('Release') {
       steps {
         sh '''
-            	    oc project alzhi-greetings
+            	    oc project admin1-greetings
             	    oc start-build greeting-console  --follow --wait
         	'''
       }
