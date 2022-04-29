@@ -1,34 +1,34 @@
-pipeline{
-    agent{
-        label "nodejs"
+pipeline {
+  agent {
+    label 'nodejs'
+  }
+  stages {
+    stage('Install dependencies') {
+      steps {
+        sh 'echo \'npm ci\''
+      }
     }
-    stages{
-        stage("Install dependencies"){
-            steps{
-                sh "echo 'npm ci'"
-            }
-        }
 
-        stage("Check Style"){
-            steps{
-                sh "echo 'npm run lint'"
-            }
-        }
+    stage('Check Style') {
+      steps {
+        sh 'echo \'npm run lint\''
+      }
+    }
 
-        stage("Test"){
-            steps{
-                sh "echo 'npm test'"
-            }
-        }
+    stage('Test') {
+      steps {
+        sh 'echo \'npm test\''
+      }
+    }
 
-        // Add the Release stage here
-	stage('Release') {
-    	    steps {
-        	sh '''
-            	    oc project ygscya-greetings
+    stage('Release') {
+      steps {
+        sh '''
+            	    oc project alzhi-greetings
             	    oc start-build greeting-console  --follow --wait
         	'''
+      }
     }
-}
-    }
+
+  }
 }
